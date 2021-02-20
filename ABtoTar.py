@@ -1,7 +1,7 @@
-# iOS Backup UNF
-# UNFunk iOS backups into something sensible
-# Assumes presence of manifest.db, and uses the files present in 'Files' table to determine path.
-# Also an example of dataclasses, F-strings, logging and argparse, whew
+# ABtoTar.py
+# Change the Android Backup file (*.ab) into a tar for fun and profit.
+# Basically; remove the first 24 bytes and replace them with a tar header.
+# Ed Greybeard 2021
 
 from tarfile import is_tarfile
 import os.path
