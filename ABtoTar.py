@@ -1,4 +1,9 @@
-import tarfile
+# iOS Backup UNF
+# UNFunk iOS backups into something sensible
+# Assumes presence of manifest.db, and uses the files present in 'Files' table to determine path.
+# Also an example of dataclasses, F-strings, logging and argparse, whew
+
+from tarfile import is_tarfile
 import os.path
 import logging
 import argparse
@@ -58,7 +63,15 @@ def extract_tar_from_ab(path_to_ab, output_dir=None):
 
     output_file.close()
     ab_data.close()
-    return True
+
+    # quick verify
+    try:
+        test_val = is_tarfile(output_path)
+        logging.info("Output verified OK")
+        return True
+    except:
+        logging.error("Verification failed; maybe it's encrypted?")
+        return False
 
 
 def build_tar_filepath(input_path, output_dir):
