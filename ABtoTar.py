@@ -3,6 +3,11 @@ import os.path
 import logging
 import argparse
 
+AB_HEADER = b"ANDROID BACKUP"
+TAR_HEADER = b"\x1f\x8b\x08\x00\x00\x00\x00\x00"
+IGNORE_OFFSET = 24
+
+
 logging.basicConfig(format='%(asctime)s | %(levelname)s | %(message)s', level='DEBUG')
 
 def extract_tar_from_ab(path_to_ab, output_dir=None):
